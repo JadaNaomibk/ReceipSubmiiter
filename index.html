@@ -2,97 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VENUS • Recipe Submitter</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <h1 id="appTitle">VENUS • Recipe Submitter</h1>
-    <p class="subtitle">
-      Share your recipes with the community! Let us know where to source your favorite food finds!
-    </p>
+    <p class="subtitle">Share your recipes and where to source the ingredients.</p>
   </header>
 
   <main class="grid">
-    <!-- Submission Section -->
+    <!-- Submit Section -->
     <section id="submit-section" class="card">
-      <h2>Submit Your Recipe</h2>
-      <h3>
-        This is your time to shine! Our database collects your recipe info to see which ingredients are most popular
-        and to understand true cultural influences. Be creative—share your best family recipes!
-      </h3>
+      <h2>Submit a Recipe</h2>
 
       <form id="recipeForm" autocomplete="off">
+        <!-- Title -->
         <div class="field">
           <label for="title">Recipe Title <span aria-hidden="true">*</span></label>
-          <input
-            id="title"
-            name="title"
-            type="text"
-            required
-            minlength="3"
-            maxlength="80"
-            placeholder="e.g., Oxtail Stew"
-            aria-describedby="titleHelp"
-          />
+          <input id="title" name="title" type="text" required minlength="3" maxlength="80"
+                 placeholder="e.g., Oxtail Stew" aria-describedby="titleHelp" />
           <small id="titleHelp" class="help"></small>
         </div>
 
+        <!-- Difficulty -->
         <div class="field">
           <label for="difficulty">Difficulty <span aria-hidden="true">*</span></label>
           <select id="difficulty" name="difficulty" required>
-            <option value="">Choose...</option>
+            <option value="">Choose…</option>
             <option>Beginner</option>
             <option>Intermediate</option>
             <option>Pro Mode</option>
           </select>
         </div>
 
-        <div class="field">
-          <label for="ingredients">Ingredients (one per line) <span aria-hidden="true">*</span></label>
-          <textarea
-            id="ingredients"
-            name="ingredients"
-            rows="6"
-            required
-            minlength="3"
-            placeholder="2 lbs oxtail&#10;1 tbsp soy sauce&#10;1 tsp allspice&#10;..."
-          ></textarea>
-        </div>
-
-        <div class="field">
-          <label for="steps">Steps <span aria-hidden="true">*</span></label>
-          <textarea
-            id="steps"
-            name="steps"
-            rows="6"
-            required
-            placeholder="Step 1: Marinate...&#10;Step 2: Brown the meat...&#10;Step 3: Simmer until tender..."
-          ></textarea>
-        </div>
-
-        <fieldset class="field">
-          <legend>Ingredient Sourcing</legend>
-          <div class="field-inline">
-            <label for="sourceName">Store/Source</label>
-            <input id="sourceName" name="sourceName" type="text" placeholder="e.g., Trader Joe’s" />
-          </div>
-          <div class="field-inline">
-            <label for="sourceUrl">Link (optional)</label>
-            <input id="sourceUrl" name="sourceUrl" type="url" placeholder="https://grocerystorelink.com/item" />
-          </div>
-        </fieldset>
-
-        <!-- Culture (dropdown) -->
+        <!-- Culture (hard-coded options so they always show) -->
         <fieldset class="field">
           <legend>Culture</legend>
           <label class="visually-hidden" for="culture">Pick a culture</label>
           <select id="culture" name="culture" required>
             <option value="">Choose a culture…</option>
-            <!-- JS will inject options from CULTURES -->
+            <option value="caribbean">Caribbean 🌴</option>
+            <option value="jamaican">Jamaican 🇯🇲</option>
+            <option value="haitian">Haitian 🇭🇹</option>
+            <option value="trinidadian">Trinidadian 🇹🇹</option>
+            <option value="dominican">Dominican 🇩🇴</option>
+            <option value="mexican">Mexican 🇲🇽</option>
+            <option value="italian">Italian 🇮🇹</option>
+            <option value="french">French 🇫🇷</option>
+            <option value="japanese">Japanese 🇯🇵</option>
+            <option value="chinese">Chinese 🇨🇳</option>
+            <option value="korean">Korean 🇰🇷</option>
+            <option value="indian">Indian 🇮🇳</option>
+            <option value="thai">Thai 🇹🇭</option>
+            <option value="ethiopian">Ethiopian 🇪🇹</option>
+            <option value="nigerian">Nigerian 🇳🇬</option>
+            <option value="moroccan">Moroccan 🇲🇦</option>
+            <option value="american_southern">American Southern 🇺🇸</option>
+            <option value="vegan_fusion">Vegan Fusion 🌿</option>
           </select>
           <small id="cultureHelp" class="help"></small>
+        </fieldset>
+
+        <!-- Dietary Restrictions (optional) -->
+        <fieldset class="field">
+          <legend>Dietary Restrictions (optional)</legend>
+          <div class="tag-checks" id="dietaryGroup">
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Vegan"><span>Vegan</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Vegetarian"><span>Vegetarian</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Pescatarian"><span>Pescatarian</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Kosher"><span>Kosher</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Halal"><span>Halal</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Gluten-Free (Celiac-Safe)"><span>Gluten-Free (Celiac-Safe)</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Dairy-Free"><span>Dairy-Free</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Egg-Free"><span>Egg-Free</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Soy-Free"><span>Soy-Free</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Nut-Free"><span>Nut-Free</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Sesame-Free"><span>Sesame-Free</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Shellfish-Free"><span>Shellfish-Free</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Fish-Free"><span>Fish-Free</span></label>
+            <label class="tag-check"><input type="checkbox" name="dietary" value="Pork-Free"><span>Pork-Free</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Ingredients -->
+        <div class="field">
+          <label for="ingredients">Ingredients (one per line) <span aria-hidden="true">*</span></label>
+          <textarea id="ingredients" name="ingredients" rows="6" required placeholder="2 lbs oxtails&#10;1 onion, chopped&#10;..."></textarea>
+        </div>
+
+        <!-- Steps -->
+        <div class="field">
+          <label for="steps">Steps <span aria-hidden="true">*</span></label>
+          <textarea id="steps" name="steps" rows="6" required placeholder="Step 1...&#10;Step 2..."></textarea>
+        </div>
+
+        <!-- Ingredient Sourcing -->
+        <fieldset class="field">
+          <legend>Ingredient Sourcing</legend>
+          <div class="field-inline">
+            <label for="sourceName">Store/Source</label>
+            <input id="sourceName" name="sourceName" type="text" placeholder="e.g., Trader Joe’s" />
+            <label for="sourceUrl">Link (optional)</label>
+            <input id="sourceUrl" name="sourceUrl" type="url" placeholder="https://example.com/item" />
+          </div>
         </fieldset>
 
         <div class="actions">
@@ -106,7 +120,7 @@
     <section id="list-section" class="card">
       <h2>Recipes</h2>
       <div class="toolbar">
-        <input id="search" type="search" placeholder="Search recipes here..." />
+        <input id="search" type="search" placeholder="Search by title, culture, or dietary…" />
         <button id="dumpBtn" type="button" title="Export all recipes as JSON">Export JSON</button>
       </div>
       <ul id="recipesList" aria-live="polite"></ul>
@@ -123,6 +137,8 @@
           <span class="badge r-culture"></span>
           <button class="favBtn" aria-pressed="false" title="Toggle favorite">☆</button>
         </header>
+
+        <div class="r-dietary"></div>
 
         <p class="r-source"></p>
 
