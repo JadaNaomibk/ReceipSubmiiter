@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VENUS • Recipe Submitter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1 id="appTitle">VENUS • Recipe Submitter</h1>
+    <p class="subtitle">
+      Share your recipes with the community! Let us know where to source your favorite food finds!
+    </p>
+  </header>
+
+  <main class="grid">
+    <!-- Submission Section -->
+    <section id="submit-section" class="card">
+      <h2>Submit Your Recipe</h2>
+      <h3>
+        This is your time to shine! Our database collects your recipe info to see which ingredients are most popular
+        and to understand true cultural influences. Be creative—share your best family recipes!
+      </h3>
+
+      <form id="recipeForm" autocomplete="off">
+        <div class="field">
+          <label for="title">Recipe Title <span aria-hidden="true">*</span></label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            required
+            minlength="3"
+            maxlength="80"
+            placeholder="e.g., Oxtail Stew"
+            aria-describedby="titleHelp"
+          />
+          <small id="titleHelp" class="help"></small>
+        </div>
+
+        <div class="field">
+          <label for="difficulty">Difficulty <span aria-hidden="true">*</span></label>
+          <select id="difficulty" name="difficulty" required>
+            <option value="">Choose...</option>
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Pro Mode</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="ingredients">Ingredients (one per line) <span aria-hidden="true">*</span></label>
+          <textarea
+            id="ingredients"
+            name="ingredients"
+            rows="6"
+            required
+            minlength="3"
+            placeholder="2 lbs oxtail&#10;1 tbsp soy sauce&#10;1 tsp allspice&#10;..."
+          ></textarea>
+        </div>
+
+        <div class="field">
+          <label for="steps">Steps <span aria-hidden="true">*</span></label>
+          <textarea
+            id="steps"
+            name="steps"
+            rows="6"
+            required
+            placeholder="Step 1: Marinate...&#10;Step 2: Brown the meat...&#10;Step 3: Simmer until tender..."
+          ></textarea>
+        </div>
+
+        <fieldset class="field">
+          <legend>Ingredient Sourcing</legend>
+          <div class="field-inline">
+            <label for="sourceName">Store/Source</label>
+            <input id="sourceName" name="sourceName" type="text" placeholder="e.g., Trader Joe’s" />
+          </div>
+          <div class="field-inline">
+            <label for="sourceUrl">Link (optional)</label>
+            <input id="sourceUrl" name="sourceUrl" type="url" placeholder="https://grocerystorelink.com/item" />
+          </div>
+        </fieldset>
+
+        <!-- Culture (dropdown) -->
+        <fieldset class="field">
+          <legend>Culture</legend>
+          <label class="visually-hidden" for="culture">Pick a culture</label>
+          <select id="culture" name="culture" required>
+            <option value="">Choose a culture…</option>
+            <!-- JS will inject options from CULTURES -->
+          </select>
+          <small id="cultureHelp" class="help"></small>
+        </fieldset>
+
+        <div class="actions">
+          <button id="saveBtn" type="submit">Save Recipe</button>
+          <button id="resetBtn" type="reset">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- List Section -->
+    <section id="list-section" class="card">
+      <h2>Recipes</h2>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search recipes here..." />
+        <button id="dumpBtn" type="button" title="Export all recipes as JSON">Export JSON</button>
+      </div>
+      <ul id="recipesList" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <!-- Recipe Card Template -->
+  <template id="recipeTpl">
+    <li class="recipe-card" data-id="">
+      <article>
+        <header class="recipe-header">
+          <h3 class="r-title"></h3>
+          <span class="badge r-difficulty"></span>
+          <span class="badge r-culture"></span>
+          <button class="favBtn" aria-pressed="false" title="Toggle favorite">☆</button>
+        </header>
+
+        <p class="r-source"></p>
+
+        <details class="r-details">
+          <summary>Ingredients &amp; Steps</summary>
+          <div class="columns">
+            <ul class="r-ingredients"></ul>
+            <ol class="r-steps"></ol>
+          </div>
+          <div class="row">
+            <button class="deleteBtn" type="button">Delete</button>
+          </div>
+        </details>
+      </article>
+    </li>
+  </template>
+
+  <footer class="site-footer">
+    <small>&copy; <span id="yr"></span> VENUS</small>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
