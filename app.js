@@ -175,7 +175,7 @@ class RecipeApp {
       }
     });
 
-    // favorite / delete (delegated)
+    // favorite / delete 
     this.listEl.addEventListener('click', (e) => {
       const card = e.target.closest && e.target.closest('li.recipe-card');
       if (!card) return;
@@ -204,14 +204,7 @@ class RecipeApp {
       this.renderList(e.target.value);
     });
 
-    // reset visual feedback (optional)
-    if (this.resetBtn) {
-      this.resetBtn.addEventListener('click', () => {
-        this.form.classList.add('was-reset');
-        setTimeout(() => this.form.classList.remove('was-reset'), 400);
-      });
-    }
-
+ 
     // export
     this.dumpBtn.addEventListener('click', () => {
       const data = JSON.stringify(this.recipes, null, 2);
