@@ -1,6 +1,6 @@
 'use strict';
 
-/* VENUS • Recipe Submitter (simple class version) */
+/* VENUS • Recipe Submitter (simple class ) */
 class RecipeApp {
   constructor() {
     // DOM
